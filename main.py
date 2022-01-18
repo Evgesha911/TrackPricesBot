@@ -19,7 +19,7 @@ def start_bot(message):
     keyboard = create_keyboard()
     bot.send_message(
         message.chat.id,
-        "Добрый день! Выберите, что Вы хотите",
+        "Итак,дорогой пользователь, выберите, что Вы хотите",
         reply_markup=keyboard
     )
 
@@ -49,7 +49,7 @@ def start_message(message):
     elif message.text == "/help":
         bot.send_message(message.from_user.id, "Приступим к совместной работе!")
     else:
-        bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /help.")
+        bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /help или /start.")
 
 
 
