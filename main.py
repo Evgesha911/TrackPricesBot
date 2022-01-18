@@ -10,6 +10,9 @@ def start_message(message):
         bot.send_message(message.chat.id, f'Привет, {message.from_user.username}, нажми "/help"')
     elif message.text == "/help":
         bot.send_message(message.from_user.id, "Приступим к совместной работе!")
+    else:
+        bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /help.")
+
 
 #Почему-то не запускается дальше код
 @bot.message_handler(content_types=["text"])
@@ -21,7 +24,7 @@ def create_keyboard():
     keyboard.add(find_btn)
     return keyboard
 
-@bot.message_handler(commands=['hello'])
+@bot.message_handler(commands=['help'])
 def start_bot(message):
     keyboard = create_keyboard()
     bot.send_message(
