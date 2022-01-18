@@ -4,18 +4,7 @@ from telebot import types
 
 bot=telebot.TeleBot('5096778027:AAEuJNf-CCydjEQt04kYkpSJOQ6_4PGAD4A')
 
-@bot.message_handler(content_types=['text'])
-def start_message(message):
-    if message.text=='/start':
-        bot.send_message(message.chat.id, f'Привет, {message.from_user.username}, нажми "/help"')
-    elif message.text == "/help":
-        bot.send_message(message.from_user.id, "Приступим к совместной работе!")
-    else:
-        bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /help.")
-
-
-#Почему-то не запускается дальше код
-@bot.message_handler(content_types=["text"])
+#Создадим клавиатуру
 def create_keyboard():
     keyboard = types.InlineKeyboardMarkup()
     how_btn = types.InlineKeyboardButton(text="1.Хочу узнать как это работает", callback_data='1')
@@ -23,6 +12,7 @@ def create_keyboard():
     keyboard.add(how_btn)
     keyboard.add(find_btn)
     return keyboard
+
 
 @bot.message_handler(commands=['help'])
 def start_bot(message):
@@ -51,6 +41,15 @@ def callback_inline(call):
                 bot.send_message(message.chat.id, "Привет! Нажми на кнопку и перейди в поисковик.",
                                  reply_markup=keyboard)
 
+
+@bot.message_handler(content_types=['text'])
+def start_message(message):
+    if message.text=='/start':
+        bot.send_message(message.chat.id, f'Привет, {message.from_user.username}, нажми "/help"')
+    elif message.text == "/help":
+        bot.send_message(message.from_user.id, "Приступим к совместной работе!")
+    else:
+        bot.send_message(message.from_user.id, "Я тебя не понимаю. Напиши /help.")
 
 
 
